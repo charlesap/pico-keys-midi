@@ -264,7 +264,7 @@ void midi_task(void)
 
     if((c2[akey]==nil_time)&&(cdown[mkey]==1)){
       tudi_midi_write24(0, 0x80, mkey , 0);
-      packet[0]=80;packet[1]=mkey,packet[2]=0;uart_write_blocking(uart0, packet, 3);
+      packet[0]=80;packet[1]=mkey;packet[2]=0;uart_write_blocking(uart0, packet, 3);
       cdown[mkey]=0;
     }
     if((c2[akey]!=nil_time)&&(cdown[mkey]==0)){
@@ -274,7 +274,7 @@ void midi_task(void)
       if (speed < 32) speed = 32;
      
       tudi_midi_write24(0, 0x90, mkey, speed); // - (speed>>5));
-      packet[0]=90;packet[1]=mkey,packet[2]=speed;uart_write_blocking(uart0, packet, 3);
+      packet[0]=90;packet[1]=mkey;packet[2]=speed;uart_write_blocking(uart0, packet, 3);
       cdown[mkey]=1;
     }
     
